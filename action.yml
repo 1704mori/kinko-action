@@ -1,0 +1,10 @@
+name: Kinko
+inputs:
+  secrets:
+    secret: Name of the secret to use
+    api_url: URL of the Kinko API [e.g. http(s)://(kinko.example.com|192.168.255.254)(:port)@token]
+    required: true
+    
+runs:
+  using: docker
+  image: Dockerfile
