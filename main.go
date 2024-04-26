@@ -37,7 +37,6 @@ func main() {
 	debug := githubactions.GetInput("debug")
 
 	for _, secret := range res {
-		fmt.Printf("%+v\n", secret)
 		githubactions.SetEnv(secret.Key, secret.Value)
 		if debug != "true" || debug == "" {
 			githubactions.AddMask(secret.Value)
