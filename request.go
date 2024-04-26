@@ -20,6 +20,7 @@ func Request(domain, token, secretName string) ([]Secret, error) {
 		domain = domain[:len(domain)-1]
 	}
 
+	fmt.Printf("Requesting secret %s from %s\n", secretName, domain)
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/api/v1/secret/%s", domain, secretName), nil)
 	if err != nil {
 		return secrets, err
