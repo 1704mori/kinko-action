@@ -20,8 +20,8 @@ func main() {
 	}
 
 	domain := strings.Split(apiUrl, "@")[0]
-	if len(domain) != 2 {
-		githubactions.Fatalf("invalid api_url format: expected format is http(s)://0.0.0.0:8080@token or http(s)://hostname(:port)@token")
+	if domain == "" {
+		githubactions.Fatalf("missing domain in api_url: domain is required")
 	}
 
 	token := strings.Split(apiUrl, "@")[1]
