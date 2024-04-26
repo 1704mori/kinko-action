@@ -10,31 +10,28 @@ import (
 func main() {
 	secret := githubactions.GetInput("secret")
 	if secret == "" {
-		githubactions.Fatalf("missing input 'secret'")
+		githubactions.Fatalf("missing input 'secret': secret is required")
 	}
-	// githubactions.AddMask(secret)
 
-	// format: http(s)://0.0.0.0:8080@token or http(s)://hostname(:port)@token
-	// things between () are optional
 	apiUrl := githubactions.GetInput("api_url")
+	fmt.Printf("api_url: %s\n", apiUrl)
 	if apiUrl == "" {
-		githubactions.Fatalf("missing input 'api_url'")
+		githubactions.Fatalf("missing input 'api_url': api_url is required")
 	}
 
 	domain := strings.Split(apiUrl, "@")[0]
 	if len(domain) != 2 {
-		githubactions.Fatalf("invalid api_url format")
+		githubactions.Fatalf("invalid api_url format: expected format is http(s)://0.0.0.0:8080@token or http(s)://hostname(:port)@token")
 	}
 
 	token := strings.Split(apiUrl, "@")[1]
 	if token == "" {
-		githubactions.Fatalf("missing token in api_url")
+		githubactions.Fatalf("missing token in api_url: token is required")
 	}
 
-	// res, err := Request("http://localhost:8080", "123", "secretName")
 	res, err := Request(domain, token, secret)
 	if err != nil {
-		githubactions.Fatalf("error: %v", err)
+		githubactions.Fatalf("error making request: %v", err)
 	}
 
 	for _, secret := range res {
