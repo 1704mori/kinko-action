@@ -3,7 +3,7 @@ inputs:
   secrets:
     secret: Name of the secret to use
     api_url: URL of the Kinko API [e.g. http(s)://(kinko.example.com|192.168.255.254)(:port)@token]
-    debug: Enable debug mode to see plain secret output [true|false] (default: false)
+    debug: Enable debug mode to see plain secret output [true|false] (default - false)
     required: true
 
 runs:
