@@ -34,13 +34,9 @@ func main() {
 		githubactions.Fatalf("error making request: %v", err)
 	}
 
-	debug := githubactions.GetInput("debug")
-
 	for _, secret := range res {
 		githubactions.SetEnv(secret.Key, secret.Value)
-		if debug != "true" || debug == "" {
-			githubactions.AddMask(secret.Value)
-		}
+		githubactions.AddMask(secret.Value)
 	}
 
 	githubactions.SetOutput("output", "done")

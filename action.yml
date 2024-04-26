@@ -1,16 +1,9 @@
 name: Kinko
 inputs:
   secrets:
-    secret:
-      description: Name of the secret to use
-      required: true
-    api_url:
-      description: URL of the Kinko API [e.g. http(s)://(kinko.example.com|
-      required: true
-    debug:
-      description: Enable debug mode to see plain secret output [true|false]
-      required: false
-      default: false
+    secret: Name of the secret to use
+    api_url: URL of the Kinko API [e.g. http(s)://(kinko.example.com|192.168.255.254)(:port)@token]
+    required: true
 
 runs:
   using: docker
